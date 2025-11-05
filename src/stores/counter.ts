@@ -6,6 +6,9 @@ export const useCounterStore = defineStore('counter', () => {
   const count = ref<number>(0)
   const message = ref<string>('Hello from Pinia!')
   const history = ref<number[]>([]) // historia zmian
+  const isLoading = ref(false)
+  const error = ref<string | null>(null)
+  const randomFact = ref<string>('')
 
   // ===== GETTERS =====
   const doubleCount = computed(() => count.value * 2)
@@ -23,6 +26,42 @@ export const useCounterStore = defineStore('counter', () => {
   })
 
   // ===== ACTIONS =====
+  // Prawdziwe API call
+  async function fetchRandomFact() {
+    isLoading.value = true
+    error.value = null
+
+    try {
+      const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${count.value}`)
+
+      if (!response.ok) {
+        throw new Error('API request failed')
+      }
+
+      const data = await response.text()
+      randomFact.value = data
+    } catch (err) {
+      error.value = err instanceof Error ? err.message : 'Unknown error'
+      randomFact.value = ''
+    } finally {
+      isLoading.value = false
+    }
+  }
+  // Prosty delay (symulacja API)
+  async function incrementAsync() {
+    isLoading.value = true
+    try {
+      // Symulacja API call
+      await new Promise((resolve) => setTimeout(resolve, 1000))
+      count.value++
+      history.value.push(count.value)
+    } catch (err) {
+      error.value = 'Failed to increment' + err
+    } finally {
+      isLoading.value = false
+    }
+  }
+
   function increment() {
     count.value++
     history.value.push(count.value)
@@ -53,6 +92,9 @@ export const useCounterStore = defineStore('counter', () => {
     count,
     message,
     history,
+    isLoading,
+    error,
+    randomFact,
 
     // Getters
     doubleCount,
@@ -66,5 +108,7 @@ export const useCounterStore = defineStore('counter', () => {
     incrementBy,
     reset,
     setMessage,
+    incrementAsync,
+    fetchRandomFact,
   }
 })
