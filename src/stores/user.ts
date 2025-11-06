@@ -7,9 +7,9 @@ export const useUserStore = defineStore(
   'user',
   () => {
     // ===== STATE =====
-    const username = ref<string>('Guest')
-    const password = ref<string>('Password1234')
-    const creditCard = ref<number>(123123123)
+    const username = ref<string>('')
+    const password = ref<string>('')
+    const creditCard = ref<number>(0)
     const isLoggedIn = ref<boolean>(false)
     const favoriteNumber = ref<number>(0)
 

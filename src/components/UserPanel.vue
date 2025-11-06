@@ -17,6 +17,13 @@ const { login, logout, syncWithCounter, resetCounter, setName, setPassword, setC
 const tempUsername = ref('')
 const tempCreditCard = ref(0)
 const tempPassword = ref('')
+
+function handleLogin() {
+  setName(tempUsername.value)
+  setPassword(tempPassword.value)
+  setCreditNumber(tempCreditCard.value)
+  login()
+}
 </script>
 
 <template>
@@ -59,7 +66,7 @@ const tempPassword = ref('')
           />
         </div>
         
-        <button class="btn btn-primary" @click="login()">Login</button>
+        <button class="btn btn-primary" @click="handleLogin()">Login</button>
       </div>
 
       <!-- Logged in state -->
