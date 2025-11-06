@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import CounterDestructured from './components/CounterDestructured.vue'
-import CounterView from './components/CounterView.vue'
+// import CounterView from './components/CounterView.vue'
 </script>
 
 <template>
   <CounterDestructured />
-  <CounterView />
+  <!-- <CounterView /> -->
 </template>
 
 <style scoped>
@@ -16,7 +16,8 @@ import CounterView from './components/CounterView.vue'
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
 :deep(.container) {

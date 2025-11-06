@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { useCounterStore } from '@/stores/counter'
 const counterStore = useCounterStore()
-const { count, doubleCount, message } = counterStore
-
-const { increment, decrement, reset } = counterStore
+const { count, doubleCount, message, increment, decrement, reset } = counterStore
 </script>
 
 <template>
