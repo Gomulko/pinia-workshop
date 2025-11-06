@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import { useCounterStore } from '@/stores/counter'
-
+import { ref } from 'vue'
 const counterStore = useCounterStore()
+const showAlertAlert = ref(false)
 if (counterStore.isGreaterThan(10)) {
-  alert('Get lower!')
+  showAlertAlert.value = true
 }
 </script>
 
 <template>
+  <div v-if="showAlertAlert">
+    <h1>⚠️ Alert</h1>
+  </div>
   <div class="container">
     <h1 class="title">🎯 Pinia Counter Store Demo</h1>
 
@@ -66,6 +70,9 @@ if (counterStore.isGreaterThan(10)) {
 </template>
 
 <style scoped>
+h1 {
+  font-size: 100px;
+}
 .container {
   max-width: 800px;
   margin: 0 auto;
